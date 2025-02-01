@@ -8,8 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'cream': '#fdf6e3',
+        'brown': '#8b4513',
+        'light-brown': '#d2691e',
+        'green': '#98c379',
+        'light-green': '#c5e1a5',
+      },
+      fontFamily: {
+        'press-start': ['"Press Start 2P"', 'cursive'],
       },
     },
   },

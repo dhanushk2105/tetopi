@@ -1,101 +1,175 @@
-import Image from "next/image";
+// app/page.js
+'use client';
 
-export default function Home() {
+import React, { useEffect, useState } from 'react';
+import { Coffee, Clock, Heart, Share2, Instagram, Twitter, Globe } from 'lucide-react';
+
+const translations = {
+  en: {
+    features: "Features",
+    screenshots: "Screenshots",
+    contact: "Contact",
+    welcome: "Welcome to TéTopi!",
+    tagline: "Your perfect companion for the ideal tea, always.",
+    downloadNow: "Start Timer",
+    specialFeatures: "Special Features",
+    perfectTiming: "Perfect Timing",
+    timersDesc: "Custom timers for each type of tea",
+    favorites: "Favorite Recipes",
+    favoritesDesc: "Save your preferred combinations",
+    share: "Share",
+    shareDesc: "Connect with other tea lovers",
+    visualize: "Visualize the Magic",
+    enjoyTea: "Enjoy your tea!",
+  },
+  es: {
+    features: "Características",
+    screenshots: "Capturas",
+    contact: "Contacto",
+    welcome: "¡Bienvenido a TéTopi!",
+    tagline: "Tu compañero perfecto para preparar el té ideal, siempre.",
+    downloadNow: "Iniciar temporizador",
+    specialFeatures: "Características Especiales",
+    perfectTiming: "Tiempo Perfecto",
+    timersDesc: "Temporizadores personalizados para cada tipo de té",
+    favorites: "Recetas Favoritas",
+    favoritesDesc: "Guarda tus combinaciones preferidas",
+    share: "Comparte",
+    shareDesc: "Conecta con otros amantes del té",
+    visualize: "Visualiza la Magia",
+    enjoyTea: "¡Que disfrutes de tu té!",
+  },
+  fr: {
+    features: "Fonctionnalités",
+    screenshots: "Captures",
+    contact: "Contact",
+    welcome: "Bienvenue sur TéTopi !",
+    tagline: "Votre compagnon parfait pour le thé idéal, toujours.",
+    downloadNow: "Démarrer l'horloge",
+    specialFeatures: "Fonctionnalités Spéciales",
+    perfectTiming: "Timing Parfait",
+    timersDesc: "Minuteurs personnalisés pour chaque type de thé",
+    favorites: "Recettes Préférées",
+    favoritesDesc: "Sauvegardez vos combinaisons préférées",
+    share: "Partagez",
+    shareDesc: "Connectez-vous avec d'autres amateurs de thé",
+    visualize: "Visualisez la Magie",
+    enjoyTea: "Savourez votre thé !",
+  }
+};
+
+const LandingPage = () => {
+  const [language, setLanguage] = useState('en');
+  const t = translations[language];
+
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    return () => document.head.removeChild(link);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-cream text-brown font-press-start">
+      {/* Header */}
+      <header className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-4">
+            <Coffee className="w-8 h-8 text-light-brown" />
+            <h1 className="text-2xl font-bold">TéTopi</h1>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            {/* Language Selector */}
+            <div className="relative flex items-center gap-2">
+              <Globe className="w-5 h-5 text-light-brown" />
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="bg-cream border border-light-brown rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-light-brown"
+              >
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+              </select>
+            </div>
+            
+            <nav className="flex gap-8">
+              <a href="#features" className="text-sm hover:text-light-brown transition-colors">{t.features}</a>
+              <a href="#screenshots" className="text-sm hover:text-light-brown transition-colors">{t.screenshots}</a>
+              <a href="#contact" className="text-sm hover:text-light-brown transition-colors">{t.contact}</a>
+            </nav>
+          </div>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+      {/* Hero Section */}
+      <section className="text-center py-16 px-4">
+        <h2 className="text-4xl md:text-5xl mb-6">{t.welcome}</h2>
+        <p className="text-light-brown text-lg mb-8 max-w-2xl mx-auto">
+          {t.tagline}
+        </p>
+        <a href='/timer' className="bg-green text-cream px-8 py-4 rounded-lg flex items-center gap-2 mx-auto hover:bg-light-green transition-colors">
+          {t.downloadNow}
+          <Heart className="w-5 h-5" />
+        </a>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 px-4 max-w-7xl mx-auto">
+        <h3 className="text-2xl text-center mb-12">{t.specialFeatures}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white bg-opacity-50 p-8 rounded-lg text-center">
+            <Clock className="w-12 h-12 text-light-brown mx-auto mb-4" />
+            <h4 className="text-lg mb-4">{t.perfectTiming}</h4>
+            <p className="text-sm">{t.timersDesc}</p>
+          </div>
+          <div className="bg-white bg-opacity-50 p-8 rounded-lg text-center">
+            <Heart className="w-12 h-12 text-light-brown mx-auto mb-4" />
+            <h4 className="text-lg mb-4">{t.favorites}</h4>
+            <p className="text-sm">{t.favoritesDesc}</p>
+          </div>
+          <div className="bg-white bg-opacity-50 p-8 rounded-lg text-center">
+            <Share2 className="w-12 h-12 text-light-brown mx-auto mb-4" />
+            <h4 className="text-lg mb-4">{t.share}</h4>
+            <p className="text-sm">{t.shareDesc}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Screenshots Section */}
+      <section id="screenshots" className="py-16 px-4 max-w-7xl mx-auto">
+        <h3 className="text-2xl text-center mb-12">{t.visualize}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <img 
+            src="/api/placeholder/400/300" 
+            alt="TéTopi App Screenshot 1"
+            className="w-full rounded-lg shadow-lg"
+          />
+          <img 
+            src="/api/placeholder/400/300" 
+            alt="TéTopi App Screenshot 2"
+            className="w-full rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t-2 border-light-green mt-16 py-8 px-4 text-center">
+        <p className="text-lg mb-4">{t.enjoyTea} ☕️</p>
+        <div className="flex justify-center gap-4 mb-4">
+          <a href="#" aria-label="Instagram" className="text-light-brown hover:text-brown transition-colors">
+            <Instagram className="w-6 h-6" />
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+          <a href="#" aria-label="Twitter" className="text-light-brown hover:text-brown transition-colors">
+            <Twitter className="w-6 h-6" />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <p className="text-sm text-light-brown">© 2025 TéTopi</p>
       </footer>
     </div>
   );
-}
+};
+
+export default LandingPage;
