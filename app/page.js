@@ -110,7 +110,7 @@ const LandingPage = () => {
         <p className="text-light-brown text-lg mb-8 max-w-2xl mx-auto">
           {t.tagline}
         </p>
-        <a href='/timer' className="bg-green text-cream px-8 py-4 rounded-lg flex items-center gap-2 mx-auto hover:bg-light-green transition-colors">
+        <a href='/timer' className="bg-green text-cream w-fit px-8 py-4 rounded-lg flex items-center gap-2 mx-auto hover:bg-light-green transition-colors">
           {t.downloadNow}
           <Heart className="w-5 h-5" />
         </a>
