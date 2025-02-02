@@ -167,7 +167,8 @@ const LandingPage = () => {
             <Twitter className="w-6 h-6" />
           </a>
         </div>
-        <p className="text-sm text-light-brown">© 2025 TéTopi</p>
+        <p className="text-sm text-light-brown">❤️ by Dhanush</p>
+        <p className="text-xs text-light-brown">© 2025 TéTopi</p>
       </footer>
     </div>
   );

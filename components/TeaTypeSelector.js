@@ -2,11 +2,13 @@
 
 import React from 'react';
 import { Coffee } from 'lucide-react';
+import { defaultTeaTypes } from '@/data/defaultTeaTypes';
+
 
 export default function TeaTypeSelector({ teaTypes, selectedType, onSelect }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-      {Object.entries(teaTypes).map(([type, info]) => (
+      {Object.entries(defaultTeaTypes).map(([type, info]) => (
         <button
         key={type}
         onClick={() => onSelect(type)}
@@ -20,6 +22,8 @@ export default function TeaTypeSelector({ teaTypes, selectedType, onSelect }) {
           group
         `}
       >
+        {console.log(type)}
+        {console.log(info)}
         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <Coffee className="w-8 h-8 mx-auto mb-2 text-light-brown relative z-10" />
         <span className="text-sm relative z-10">{type}</span>
