@@ -49,7 +49,7 @@ export default function TeaTimerPage() {
     const newCustomTea = {
       name: customTea.name,
       time: timeInSeconds,
-      temp: `${customTea.temp}°C`
+      temp: `${customTea.temp}`
     };
 
     const updatedCustomTeas = [...teaTypes["Custom Blends"].variants, newCustomTea];

@@ -1,8 +1,7 @@
-// app/page.js
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Coffee, Clock, Heart, Share2, Instagram, Twitter, Globe } from 'lucide-react';
+import { Coffee, Clock, Heart, Share2, Instagram, Twitter, Globe, Menu, X } from 'lucide-react';
 
 const translations = {
   en: {
@@ -60,6 +59,7 @@ const translations = {
 
 const LandingPage = () => {
   const [language, setLanguage] = useState('en');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = translations[language];
 
   useEffect(() => {
@@ -73,14 +73,38 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-cream text-brown font-press-start">
       {/* Header */}
-      <header className="max-w-7xl mx-auto px-4 py-6">
+      <header className="max-w-7xl mx-auto px-4 py-6 relative">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-            <Coffee className="w-8 h-8 text-light-brown" />
-            <h1 className="text-2xl font-bold">TéTopi</h1>
+          {/* Logo */}
+          <div className="flex items-center gap-4 w-full md:w-auto justify-between">
+            <div className="flex items-center gap-4">
+              <Coffee className="w-8 h-8 text-light-brown" />
+              <h1 className="text-2xl font-bold">TéTopi</h1>
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-brown hover:text-light-brown transition-colors"
+              aria-label="Toggle menu">
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
           
-          <div className="flex items-center gap-6">
+          {/* Navigation and Language Selector */}
+          <div className={`
+            ${isMenuOpen ? 'flex' : 'hidden'} 
+            md:flex flex-col md:flex-row items-center gap-6 
+            w-full md:w-auto
+            absolute md:relative
+            top-full left-0 md:top-auto
+            bg-cream md:bg-transparent
+            p-4 md:p-0
+            border-t border-light-brown md:border-none
+            shadow-lg md:shadow-none
+            z-50
+            transition-all duration-300
+          `}>
             {/* Language Selector */}
             <div className="relative flex items-center gap-2">
               <Globe className="w-5 h-5 text-light-brown" />
@@ -94,12 +118,6 @@ const LandingPage = () => {
                 <option value="fr">Français</option>
               </select>
             </div>
-            
-            <nav className="flex gap-8">
-              <a href="#features" className="text-sm hover:text-light-brown transition-colors">{t.features}</a>
-              <a href="#screenshots" className="text-sm hover:text-light-brown transition-colors">{t.screenshots}</a>
-              <a href="#contact" className="text-sm hover:text-light-brown transition-colors">{t.contact}</a>
-            </nav>
           </div>
         </div>
       </header>
@@ -135,23 +153,6 @@ const LandingPage = () => {
             <h4 className="text-lg mb-4">{t.share}</h4>
             <p className="text-sm">{t.shareDesc}</p>
           </div>
-        </div>
-      </section>
-
-      {/* Screenshots Section */}
-      <section id="screenshots" className="py-16 px-4 max-w-7xl mx-auto">
-        <h3 className="text-2xl text-center mb-12">{t.visualize}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <img 
-            src="/api/placeholder/400/300" 
-            alt="TéTopi App Screenshot 1"
-            className="w-full rounded-lg shadow-lg"
-          />
-          <img 
-            src="/api/placeholder/400/300" 
-            alt="TéTopi App Screenshot 2"
-            className="w-full rounded-lg shadow-lg"
-          />
         </div>
       </section>
 
